@@ -1,0 +1,82 @@
+body {
+  background-color: #3498db;
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+.app-container {
+  background-color: white;
+  width: 400px;
+  margin: 80px auto; /* centers horizontally */
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+.subtitle {
+  color: #777;
+  font-size: 14px;
+}
+
+/* Stats row */
+.stats {
+  display: flex;
+  justify-content: center; /* centers them */
+  gap: 15px; /* controls space between them */
+  margin: 15px 0;
+  font-size: 14px;
+}
+
+.stats span {
+  background-color: #1e4de7;
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 14px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  transition: 0.2s;
+}
+
+.input-box {
+  margin: 15px 0;
+}
+
+input {
+  padding: 8px;
+  width: 65%;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+button {
+  padding: 8px 12px;
+  margin-left: 5px;
+  border: none;
+  border-radius: 5px;
+  background-color: #2ecc71;
+  color: white;
+  cursor: pointer;
+}
+
+/* Clear button */
+.clear-btn {
+  margin-top: 10px;
+  background-color: #e74c3c;
+}
+
+button:hover {
+  background-color: #27ae60; 
+  transform: scale(1.05);   
+}
+
+.stats span:hover {
+  background-color: #dfe6e9;
+  transform: translateY(-2px);
+  cursor: pointer;
+}
+
+li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  list-style-type: none; 
