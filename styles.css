@@ -1,82 +1,168 @@
-body {
-  background-color: #3498db;
-  margin: 0;
-  font-family: Arial, sans-serif;
+/* Global Reset */
+* {
+  box-sizing: border-box;
 }
 
+body {
+  background: linear-gradient(135deg, #3498db, #6dd5fa);
+  margin: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+/* Main Container */
 .app-container {
-  background-color: white;
-  width: 400px;
-  margin: 80px auto; /* centers horizontally */
-  padding: 20px;
-  border-radius: 12px;
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+  background-color: #ffffff;
+  width: 100%;
+  max-width: 420px;
+  padding: 25px;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
   text-align: center;
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+/* Title + Subtitle */
+h1 {
+  margin-bottom: 5px;
 }
 
 .subtitle {
-  color: #777;
+  color: #888;
   font-size: 14px;
+  margin-bottom: 10px;
 }
 
-/* Stats row */
+/* Stats */
 .stats {
   display: flex;
-  justify-content: center; /* centers them */
-  gap: 15px; /* controls space between them */
+  justify-content: space-between;
   margin: 15px 0;
-  font-size: 14px;
+  font-size: 13px;
 }
 
 .stats span {
-  background-color: #1e4de7;
-  padding: 8px 12px;
-  border-radius: 8px;
-  font-size: 14px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-  transition: 0.2s;
-}
-
-.input-box {
-  margin: 15px 0;
-}
-
-input {
-  padding: 8px;
-  width: 65%;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
-
-button {
-  padding: 8px 12px;
-  margin-left: 5px;
-  border: none;
-  border-radius: 5px;
-  background-color: #2ecc71;
+  flex: 1;
+  background: linear-gradient(135deg, #1e4de7, #6a82fb);
   color: white;
-  cursor: pointer;
-}
-
-/* Clear button */
-.clear-btn {
-  margin-top: 10px;
-  background-color: #e74c3c;
-}
-
-button:hover {
-  background-color: #27ae60; 
-  transform: scale(1.05);   
+  padding: 8px;
+  border-radius: 10px;
+  margin: 0 3px;
+  font-weight: 500;
+  transition: all 0.3s ease;
 }
 
 .stats span:hover {
-  background-color: #dfe6e9;
-  transform: translateY(-2px);
+  transform: translateY(-3px) scale(1.05);
+  background: linear-gradient(135deg, #4facfe, #00f2fe);
   cursor: pointer;
+}
+
+/* Input Section */
+.input-box {
+  margin: 20px 0;
+  display: flex;
+  justify-content: center;
+}
+
+input {
+  padding: 10px;
+  width: 70%;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  outline: none;
+  transition: 0.3s;
+}
+
+input:focus {
+  border-color: #3498db;
+  box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
+}
+
+/* Buttons */
+button {
+  padding: 10px 14px;
+  margin-left: 8px;
+  border: none;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #2ecc71, #27ae60);
+  color: white;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  transform: scale(1.08);
+  background: linear-gradient(135deg, #27ae60, #1e8449);
+}
+
+/* Clear Button */
+.clear-btn {
+  margin-top: 10px;
+  background: linear-gradient(135deg, #e74c3c, #c0392b);
+}
+
+.clear-btn:hover {
+  background: linear-gradient(135deg, #c0392b, #922b21);
+}
+
+/* Todo List */
+ul {
+  padding: 0;
+  margin-top: 15px;
 }
 
 li {
   display: flex;
   align-items: center;
-  gap: 10px;
-  list-style-type: none; 
+  justify-content: space-between;
+  background: #f8f9fa;
+  padding: 10px;
+  border-radius: 10px;
+  margin-bottom: 8px;
+  transition: 0.3s;
+}
+
+li:hover {
+  background: #ecf0f1;
+  transform: translateX(5px);
+}
+
+/* Checkbox spacing */
+li input[type="checkbox"] {
+  margin-right: 10px;
+}
+
+/* Completed Task */
+.completed {
+  text-decoration: line-through;
+  color: #aaa;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .app-container {
+    margin: 20px;
+    padding: 20px;
+  }
+
+  input {
+    width: 60%;
+  }
+}

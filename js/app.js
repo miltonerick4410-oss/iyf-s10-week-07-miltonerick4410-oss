@@ -1,8 +1,8 @@
 import { loadTodos, saveTodos } from "./storage.js";
 import { renderTodos, updateCounts } from "./ui.js";
 
-// Load safely (important)
-let todos = loadTodos() || [];
+// Load state
+let { todos, filter } = loadTodos();
 
 // Add Task
 function addTask(text) {
@@ -11,8 +11,7 @@ function addTask(text) {
     const newTodo = {
         id: Date.now(),
         text,
-        completed: false,
-        createdAt: new Date().toISOString() // ✅ improvement
+        completed: false
     };
 
     todos.push(newTodo);
@@ -21,8 +20,6 @@ function addTask(text) {
 
 // Toggle Task
 function toggleTask(id) {
-    if (!id) return; // ✅ safety
-
     todos = todos.map(todo =>
         todo.id === id
             ? { ...todo, completed: !todo.completed }
@@ -34,8 +31,6 @@ function toggleTask(id) {
 
 // Delete Task
 function deleteTask(id) {
-    if (!id) return;
-
     todos = todos.filter(todo => todo.id !== id);
     updateUI();
 }
@@ -46,10 +41,16 @@ function clearCompleted() {
     updateUI();
 }
 
-// ✅ NEW: single place to update everything (clean code)
+// Set Filter
+function setFilter(newFilter) {
+    filter = newFilter;
+    updateUI();
+}
+
+// Update everything
 function updateUI() {
-    saveTodos(todos);
-    renderTodos(todos);
+    saveTodos({ todos, filter });
+    renderTodos(todos, filter);
     updateCounts(todos);
 }
 
@@ -65,7 +66,7 @@ document.addEventListener("DOMContentLoaded", () => {
     form.addEventListener("submit", (e) => {
         e.preventDefault();
 
-        if (!input.value.trim()) return; // ✅ prevent empty
+        if (!input.value.trim()) return;
 
         addTask(input.value);
         input.value = "";
@@ -84,4 +85,13 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     clearBtn.addEventListener("click", clearCompleted);
+
+    document.getElementById("filter-all")
+        .addEventListener("click", () => setFilter("all"));
+
+    document.getElementById("filter-active")
+        .addEventListener("click", () => setFilter("active"));
+
+    document.getElementById("filter-completed")
+        .addEventListener("click", () => setFilter("completed"));
 });
